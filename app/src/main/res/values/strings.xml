@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ProjeManager</string>
+    <string name="proje_manager">Proje Manager</string>
+    <string name="introSubText1">Let\'s Get Started</string>
+    <string name="introSubText2">Collaborate and plan together across multiple platforms using Proje Manager\'s minimalist interface</string>
+    <string name="iv_intro">Image view for Intro Page</string>
+    <string name="sign_in_button">SIGN IN</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <string name="tv_sign_up">Enter your Email Id, your username and your password to register with us.</string>
+    <string name="et_username">Username</string>
+    <string name="et_email">Email ID</string>
+    <string name="tv_toolbar">Sign Up</string>
+</resources>
