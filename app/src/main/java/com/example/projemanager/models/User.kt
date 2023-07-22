@@ -11,7 +11,7 @@ data class User(
     val email: String = "",
     val image: String = "",
     val mobile: Long = 0,
-    val fncToken: String = "",
+    val fcmToken: String = "",
     var selected: Boolean = false
 ): Parcelable {
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -30,7 +30,7 @@ data class User(
         parcel.writeString(email)
         parcel.writeString(image)
         parcel.writeLong(mobile)
-        parcel.writeString(fncToken)
+        parcel.writeString(fcmToken)
     }
 
     override fun describeContents() = 0

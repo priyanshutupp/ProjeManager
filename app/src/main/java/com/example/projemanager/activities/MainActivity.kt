@@ -1,16 +1,24 @@
 package com.example.projemanager.activities
 
+import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,6 +58,33 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            mSharedPreferences = this.getSharedPreferences(
+                Constants.PROJEMANAGER_PREFERENCES, Context.MODE_PRIVATE)
+
+            val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED, false)
+
+            if(tokenUpdated){
+                showCustomProgressDialog()
+                lifecycleScope.launch {
+                    FirestoreClass().loadUserData(this@MainActivity, true)
+                }
+            }
+            else{
+                FirebaseInstallations.getInstance().getToken(true)
+                    .addOnSuccessListener(this@MainActivity){
+                            result ->
+                        updateFCMToken(result.token)
+                    }
+            }
+        } else {
+            Toast.makeText(this, "Your app will not show any notifications.", Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -57,26 +92,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         setUpActionBar()
 
+        askNotificationPermission()
+
         binding?.navView?.setNavigationItemSelectedListener(this)
-
-        mSharedPreferences = this.getSharedPreferences(
-            Constants.PROJEMANAGER_PREFERENCES, Context.MODE_PRIVATE)
-
-        val tokenUpdated = mSharedPreferences.getBoolean(Constants.FCM_TOKEN_UPDATED, false)
-
-        if(tokenUpdated){
-            showCustomProgressDialog()
-            lifecycleScope.launch {
-                FirestoreClass().loadUserData(this@MainActivity, true)
-            }
-        }
-        else{
-            FirebaseInstallations.getInstance().getToken(true)
-                .addOnSuccessListener(this@MainActivity){
-                        result ->
-                    updateFCMToken(result.token)
-                }
-        }
 
         onBackPressedDispatcher.addCallback(
             this,
@@ -139,6 +157,45 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         binding?.drawerLayout?.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun askNotificationPermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                this, Manifest.permission.POST_NOTIFICATIONS)){
+            openSettingsRationaleDialog()
+        }
+        else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestPermissionLauncher.launch(
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
+            }
+        }
+    }
+
+    private fun openSettingsRationaleDialog(){
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Permission Required")
+            .setMessage("You denied the Notifications permission. " +
+                    "\nYou won't be receiving any notifications." +
+                    " We recommend to enable notifications for a better experience." +
+                    " To enable storage permission go to Settings.")
+            .setNegativeButton("No Thanks"){ dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Settings"){ dialog, _ ->
+                try {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                } catch (e: ActivityNotFoundException){
+                    e.printStackTrace()
+                }
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
     }
 
     fun updateNavigationUserDetails(user: User, readBoardList: Boolean){
