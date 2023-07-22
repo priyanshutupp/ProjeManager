@@ -1,13 +1,12 @@
-package com.example.projemanager
+package com.example.projemanager.activities
 
 import android.content.Intent
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.projemanager.databinding.ActivityIntroBinding
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
     private var binding: ActivityIntroBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -22,5 +21,14 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+        binding?.buttonSignIn?.setOnClickListener {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
     }
 }

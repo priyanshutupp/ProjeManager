@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.ProjeManager" parent="Base.Theme.ProjeManager" />
+
+    <style name="Theme.ProjeManager.Regular" parent="Base.Theme.ProjeManager.Regular" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.popUpOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

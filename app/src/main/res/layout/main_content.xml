@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/main_screen_content_padding"
+    android:gravity="center"
+    android:background="@drawable/ic_background"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/marginSmall"
+        android:padding="@dimen/paddingAll"
+        app:cardCornerRadius="@dimen/card_view_corner_radius"
+        app:cardElevation="@dimen/card_view_elevation">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_boards_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:listitem="@layout/item_board" />
+
+        <TextView
+            android:id="@+id/tv_no_boards"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_boards_available"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="@dimen/no_boards_available_text_size"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

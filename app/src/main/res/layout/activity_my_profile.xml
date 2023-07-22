@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
+    tools:context=".activities.MyProfileActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightGray"
+        android:contentDescription="@string/edit"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_my_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbMyProfile"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tbMyProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_my_profile"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.popUpOverlay"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_my_profile"
+        android:layout_width="@dimen/my_profile_image_size"
+        android:layout_height="@dimen/my_profile_image_size"
+        android:layout_margin="@dimen/marginLarge"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="@dimen/nav_circular_border_width"
+        android:contentDescription="@string/nav_profile_image"
+        android:src="@drawable/ic_user_place_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbMyProfile"/>
+
+    <View
+        android:id="@+id/view_my_profile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/my_profile_divider_height"
+        android:background="@color/colorAccent"
+        android:layout_margin="@dimen/marginNormal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_my_profile"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginNormal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/paddingAll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_my_profile">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/marginNormal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/paddingAll">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:contentDescription="@string/iv_username"
+                android:src="@drawable/ic_name_my_profile" />
+
+            <LinearLayout
+                android:id="@+id/ll_name"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/marginNormal"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_my_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:textStyle="bold"
+                    tools:text="NAME" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilChangeName"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/marginNormal"
+                android:layout_weight="1"
+                android:hint="@string/name"
+                android:visibility="gone"
+                android:textColorHint="@color/secondaryTextColor"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etChangeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSizeSmall"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/ib_edit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTintMode="screen"
+                android:contentDescription="@string/edit"
+                android:src="@drawable/ic_edit" />
+
+            <ImageButton
+                android:id="@+id/ib_ok_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTintMode="screen"
+                android:contentDescription="@string/edit"
+                android:visibility="gone"
+                android:src="@drawable/ic_done" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/marginNormal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/paddingAll">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:contentDescription="@string/iv_username"
+                android:src="@drawable/ic_email_my_profile" />
+
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/marginNormal"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/e_mail"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_my_profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:textStyle="bold"
+                    tools:text="someone@gmail.com" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/marginNormal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/paddingAll">
+
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:contentDescription="@string/iv_username"
+                android:src="@drawable/ic_phone_my_profile" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilChangePhone"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/marginNormal"
+                android:layout_weight="1"
+                android:hint="@string/phone"
+                android:visibility="gone"
+                android:textColorHint="@color/secondaryTextColor"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etChangePhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSizeSmall"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_add_phone"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/marginNormal"
+                android:padding="@dimen/paddingAll"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/textSizeSmall"
+                android:textStyle="bold"
+                android:text="@string/add_phone"
+                android:textAlignment="center"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/ll_phone"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/marginNormal"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_my_profile_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:textStyle="bold"
+                    tools:text="Phone Number" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/ib_edit_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTintMode="screen"
+                android:contentDescription="@string/edit"
+                android:src="@drawable/ic_edit" />
+
+            <ImageButton
+                android:id="@+id/ib_ok_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTintMode="screen"
+                android:contentDescription="@string/edit"
+                android:visibility="gone"
+                android:src="@drawable/ic_done" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

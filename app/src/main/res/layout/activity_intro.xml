@@ -6,8 +6,8 @@
     android:padding="@dimen/paddingAll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/intro_background"
-    tools:context=".IntroActivity">
+    android:background="@drawable/ic_background"
+    tools:context=".activities.IntroActivity">
 
     <TextView
         android:id="@+id/introText"
