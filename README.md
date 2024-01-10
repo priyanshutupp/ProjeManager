@@ -2,7 +2,7 @@
 
 This app allows multiple users to work simultaneously on multiple projects. It leverages Firebase and other third-party libraries to provide real-time collaboration features. With this app, teams can effectively manage and collaborate on their projects in a seamless manner.
 
-## Table of Conten
+## Table of Content
 - [Usage](#usage)
 - [Features](#features)
 - [Dependencies](#dependencies)
