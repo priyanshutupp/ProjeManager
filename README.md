@@ -28,6 +28,9 @@ This app allows multiple users to work simultaneously on multiple projects. It l
 Download and install the app-release.apk file to run the app in your android device.
 Some screenshots of the app:
 
+![WhatsApp Image 2024-05-05 at 14 21 23_953a1303](https://github.com/priyanshutupp/ProjeManager/assets/103829981/40065b9c-3058-441f-b639-755fdeb39093)
+
+![WhatsApp Image 2024-05-05 at 14 21 23_9bb613da](https://github.com/priyanshutupp/ProjeManager/assets/103829981/c2780478-b06d-42c4-bf31-36373ae02eaf)
 
 ## Dependencies
 - Firebase: [https://firebase.google.com](https://firebase.google.com)
