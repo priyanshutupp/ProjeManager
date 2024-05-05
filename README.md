@@ -24,6 +24,11 @@ This app allows multiple users to work simultaneously on multiple projects. It l
 - User authentication: Secure user authentication using Firebase authentication.
 - Customizable settings: Personalize the app's settings based on individual preferences.
 
+## Application 
+Download and install the app-release.apk file to run the app in your android device.
+Some screenshots of the app:
+
+
 ## Dependencies
 - Firebase: [https://firebase.google.com](https://firebase.google.com)
 - Glide: [https://github.com/bumptech/glide](https://github.com/bumptech/glide)
